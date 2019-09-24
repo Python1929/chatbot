@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>My first BootstrapVue app</title>
+
+    <!-- Required Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
+    <link type="text/css" rel="stylesheet" href="./asset/css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./asset/css/emoji.css">
+
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script src="https: //unpkg.com/vue/dist/vue.js"></script> -->
+    <script src="https://unpkg.com/element-ui@2.0.11/lib/index.js"></script>
+</head>
+
+<body>
+    <!-- Our application root element -->
+    <div id="app">
+        <div>
+            <b-navbar toggleable="lg" type="light" class="navs">
+                <b-navbar-brand href="#">Untitled </b-navbar-brand>
+
+                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+                <b-collapse id="nav-collapse" is-nav>
+
+
+                    <!-- Right aligned nav items -->
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-form>
+                            <b-button href="#" size="sm" class="my-2 my-sm-0 sam">Upgrade Plan</b-button>
+                            <b-button href="#" size="sm" class="my-2 my-sm-0 sam1">Need help?</b-button>
+                        </b-nav-form>
+
+
+                        <b-nav-item-dropdown right>
+                            <!-- Using 'button-content' slot -->
+                            <template v-slot:button-content>
+                                <img class="ico" src="./asset/jpg/a.jpg" alt="image">
+
+                            </template>
+                            <b-dropdown-item href="#">Profile</b-dropdown-item>
+                            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                        </b-nav-item-dropdown>
+                    </b-navbar-nav>
+                </b-collapse>
+            </b-navbar>
+        </div>
+
+        <div>
+            <b-tabs content-class="mt-3" justified>
+                <!-- tab1 start -->
+                <b-tab title=" Preview" active class="pre">
+                    <p>I'm the first tab</p>
+                </b-tab>
+                <!-- tab1 end -->
+
+                <!-- tab2 start -->
+                <b-tab title="Script" class="scrip">
+                    <div class="form-builder ">
+                        <b-container class="bv-example-row">
+                            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+                            <b-row>
+                                <b-col cols="12" md="4" sm="9">
+                                    <div
+                                        class="form-builder-toolbar pull-left not-selectable form-builder-toolbar-sticky">
+                                        <h4></h4>
+                                        <b-row>
+                                            <b-col cols="6" md="6" sm="6">
+
+                                                <ul>
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addRow"><i class="fas fa-quote-left"></i>
+                                                        Message
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addText"><i class="fas fa-comment-alt"></i>
+                                                        Text Question
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addDate"><i class="far fa-calendar-alt"></i>
+                                                        Date
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addSelect"><i class="fas fa-check-circle"></i>
+                                                        Multi Select
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addNumber"><i class="fas fa-hashtag"></i>
+                                                        Number
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addRating"><i class="fas fa-star-half-alt"></i>
+                                                        Rating
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addLink"><i class="fas fa-link"></i>
+                                                        Links
+                                                    </li>
+
+                                                </ul>
+                                            </b-col>
+
+                                            <b-col cols="6" md="6" sm="6">
+
+                                                <ul>
+
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addOption"><i class="far fa-stop-circle"></i>
+                                                        Multi Choice
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addEmail"><i class="fas fa-envelope-square"></i>
+                                                        Email
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addBooking"><i class="far fa-clock"></i>
+                                                        Appointment
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addList"><i class="far fa-list-alt"></i>
+                                                        List
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addRange"><i class="fas fa-sliders-h"></i>
+                                                        Range
+
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addScale"><i class="fas fa-tachometer-alt"></i>
+                                                        Opinion Scale
+                                                    </li>
+
+                                                    <li class="card-shadow question-list" draggable="true"
+                                                        @click="addFile"><i class="fas fa-upload"></i>
+                                                        File Upload
+                                                    </li>
+                                                </ul>
+
+
+                                            </b-col>
+                                        </b-row>
+
+
+
+
+
+                                        <div>
+                                            <p style="font-size: 15px; margin-top: 10px;"><a
+                                                    href="https://help.collect.chat/container/show/script-types"
+                                                    target="_blank">Learn
+                                                    about
+                                                    script types</a></p><a
+                                                href="/5d6605aac153a1688892bbd2/builder/preview"><button
+                                                    class="btn btn-blue form-big-input w-200">Preview Bot</button></a>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </b-col>
+                                <b-col cols="12" md="8" sm="9">
+
+
+                                    <div class="form-builder-preview pull-right card-shadow">
+                                        <div class="edit-form"></div>
+                                        <div class="ui-sortable vertical-container">
+
+                                            <!-- message start-->
+                                            <div class="item" v-for="(div, index) in inputs">
+
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addRow"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showModal = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteRow(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-quote-left"></i> <label
+                                                        class="static">Hello</label>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div v-if="showModal">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showModal=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                        <div class="container">
+                                                                            <div class="header">
+                                                                                <div class=" clearfix">
+                                                                                    <h5 class="float-left">Message</h5>
+                                                                                    <button
+                                                                                        class="btn btn-success float-right done ">Done</button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <form>
+                                                                                <div class="form-group">
+                                                                                    <b>Chat Message</b>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <input type="textbox"
+                                                                                        class="form-control"
+                                                                                        id="summernote">
+                                                                                </div>
+
+
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+                                            <!-- message end -->
+
+                                            <!-- text start -->
+
+                                            <div class="item" v-for="(div, index) in texts">
+
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addText"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showText = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteText(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-comment-alt"></i> <label class="static">
+                                                        please type an answer</label>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div v-if="showText">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showText=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Text Question
+                                                                                </h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                            <input type="textbox" class="form-control" placeholder="Please type an answer">
+                                                                        </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+
+                                            <!-- text end -->
+
+                                            <!-- date start  -->
+
+                                            <div class="item" v-for="(div, index) in dates">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addDate"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showDate = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteDate(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-calendar-alt"></i> <label
+                                                            class="static">select a date </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showDate">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showDate=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Date</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Disable past
+                                                                                    date</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Disable future
+                                                                                    date</label>
+                                                                            </div>
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+
+                                            <!-- date end -->
+
+
+                                            <!-- multi select start-->
+
+                                            <div class="item" v-for="(div, index) in selects">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addSelect"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showSelect = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteSelect(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-check-circle"></i> <label
+                                                            class="static">select your choices </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showSelect">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showSelect=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Multi Select</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                        <input type="textbox" class="form-control" placeholder="Select your choices">
+                                                                    </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Options</b>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Sample Option">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row sample">
+                                                                                <div class="col-sm-6 ">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Sample Option">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                    <button
+                                                                                        class="btn btn-danger">-</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                    </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+
+
+                                            <!-- multi select end -->
+
+                                            <!-- number start -->
+
+                                            <div class="item" v-for="(div, index) in number">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addNumber"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showNumber = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteNumber(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-hashtag"></i> <label
+                                                            class="static">choose a number </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showNumber">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showNumber=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Number</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2"
+                                                                                        for="exampleCheck1">Maximum
+                                                                                        Digits</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control">
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2"
+                                                                                        for="exampleCheck1">Minimum
+                                                                                        Digits</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control">
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <b>Error message when visitor enter
+                                                                                    invalid answer</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Please enter valid number">
+                                                                                </div>
+
+
+                                                                            </div>
+
+
+
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                            <!-- number end -->
+
+                                            <!-- ratings start -->
+
+                                            <div class="item" v-for="(div, index) in rating">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addRating"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showRating = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteRating(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-star-half-alt"></i> <label
+                                                            class="static">How was your experience? </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showRating">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showRating=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Rating</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                <input type="textbox" class="form-control" placeholder="How was your experience?">
+                                                                            </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Rating - 1</b>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Terrible">
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Rating - 2</b>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Okay">
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Rating - 3</b>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Bad">
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Rating - 4</b>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Good">
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Rating - 5</b>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Awesome">
+
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                        </form>
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+
+
+                                            <!-- ratings end -->
+
+                                            <!-- link start -->
+
+                                            <div class="item" v-for="(div, index) in links">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addLink"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showLink = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteLink(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-link"></i> <label class="static">please
+                                                            contact us </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showLink">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showLink=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Link</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Links</b>
+                                                                            </div>
+
+                                                                            <div class="row">
+                                                                                <div class="col-sm-2 mb-3">
+                                                                                    <b>Type</b>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <b>Title</b>
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+
+                                                                                    <b>Username/Link</b>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+
+                                                                                    <b>New Tab?</b>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col-sm-2 mb-3">
+
+                                                                                    <select class="form-control drop"
+                                                                                        id="sel1" name="sellist1">
+                                                                                        <option>Messenger</option>
+                                                                                        <option>Link</option>
+                                                                                        <option>Whatsapp</option>
+                                                                                        <option>Twitter</option>
+                                                                                        <option>LinkedIn</option>
+                                                                                        <option>Snapchat</option>
+                                                                                        <option>Telegram</option>
+                                                                                        <option>Slack</option>
+                                                                                        <option>Skype</option>
+                                                                                        <option>Email</option>
+                                                                                        <option>Phone</option>
+                                                                                        <option>Facebook</option>
+                                                                                        <option>Twitter-follow</option>
+                                                                                        <option>Instagram</option>
+                                                                                        <option>Medium</option>
+                                                                                        <option>ProductHunt</option>
+                                                                                        <option>Vk</option>
+                                                                                        <option>Youtube</option>
+                                                                                        <option>Github</option>
+                                                                                        <option>Stackoverflow</option>
+
+
+
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <input type="text"
+                                                                                        class="form-control title"
+                                                                                        placeholder="Message us">
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <input type="text"
+                                                                                        class="form-control link"
+                                                                                        placeholder="Facebook page Id or hand">
+                                                                                </div>
+                                                                                <div class="col-sm-1">
+                                                                                    <div class="switchToggle"
+                                                                                        style="width:20%;">
+                                                                                        <input type="checkbox"
+                                                                                            id="switch">
+                                                                                        <label
+                                                                                            for="switch">Toggle</label>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-2">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col-sm-2 mb-3">
+
+                                                                                    <select class="form-control drop"
+                                                                                        id="sel1" name="sellist1">
+                                                                                        <option>Email</option>
+                                                                                        <option>Link</option>
+                                                                                        <option>Whatsapp</option>
+                                                                                        <option>Twitter</option>
+                                                                                        <option>LinkedIn</option>
+                                                                                        <option>Snapchat</option>
+                                                                                        <option>Telegram</option>
+                                                                                        <option>Slack</option>
+                                                                                        <option>Skype</option>
+                                                                                        <option>Messenger</option>
+                                                                                        <option>Phone</option>
+                                                                                        <option>Facebook</option>
+                                                                                        <option>Twitter-follow</option>
+                                                                                        <option>Instagram</option>
+                                                                                        <option>Medium</option>
+                                                                                        <option>ProductHunt</option>
+                                                                                        <option>Vk</option>
+                                                                                        <option>Youtube</option>
+                                                                                        <option>Github</option>
+                                                                                        <option>Stackoverflow</option>
+
+
+
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <input type="text"
+                                                                                        class="form-control title"
+                                                                                        placeholder="Email us">
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <input type="text"
+                                                                                        class="form-control link"
+                                                                                        placeholder="Email Id">
+                                                                                </div>
+                                                                                <div class="col-sm-1">
+                                                                                    <div class="switchToggle"
+                                                                                        style="width:20%;">
+                                                                                        <input type="checkbox"
+                                                                                            id="switch">
+                                                                                        <label
+                                                                                            for="switch">Toggle</label>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-2">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                    <button
+                                                                                        class="btn btn-danger">-</button>
+
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class=" col-sm-2 mb-3">
+
+                                                                                    <select class="form-control drop"
+                                                                                        id="sel1" name="sellist1">
+                                                                                        <option>Link</option>
+                                                                                        <option>Email</option>
+                                                                                        <option>Whatsapp</option>
+                                                                                        <option>Twitter</option>
+                                                                                        <option>LinkedIn</option>
+                                                                                        <option>Snapchat</option>
+                                                                                        <option>Telegram</option>
+                                                                                        <option>Slack</option>
+                                                                                        <option>Skype</option>
+                                                                                        <option>Messenger</option>
+                                                                                        <option>Phone</option>
+                                                                                        <option>Facebook</option>
+                                                                                        <option>Twitter-follow</option>
+                                                                                        <option>Instagram</option>
+                                                                                        <option>Medium</option>
+                                                                                        <option>ProductHunt</option>
+                                                                                        <option>Vk</option>
+                                                                                        <option>Youtube</option>
+                                                                                        <option>Github</option>
+                                                                                        <option>Stackoverflow</option>
+
+
+
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <input type="text"
+                                                                                        class="form-control title"
+                                                                                        placeholder="Open">
+                                                                                </div>
+
+                                                                                <div class="col-sm-4">
+                                                                                    <input type="text"
+                                                                                        class="form-control link"
+                                                                                        placeholder="https://collect.chat">
+                                                                                </div>
+                                                                                <div class="col-sm-1">
+                                                                                    <div class="switchToggle"
+                                                                                        style="width:20%;">
+                                                                                        <input type="checkbox"
+                                                                                            id="switch">
+                                                                                        <label
+                                                                                            for="switch">Toggle</label>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-2">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                    <button
+                                                                                        class="btn btn-danger">-</button>
+
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </form>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+
+                                            <!-- link end -->
+
+                                            <!-- option start -->
+
+                                            <div class="item" v-for="(div, index) in options">
+                                                <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                    draggable="true">
+                                                    <div class="item-question showhim">
+                                                        <div class="toolbar-header showme">
+                                                            <div class="toolbar-header-buttons">
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Duplicate"><i class="fas fa-copy"
+                                                                        @click="addOption"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                    aria-label="Logical Jump"><i
+                                                                        class="fas fa-random"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Edit"><i class="fas fa-pen"
+                                                                        @click="showOption = true"></i>
+                                                                </div>
+                                                                <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                    aria-label="Drag to Move"><i
+                                                                        class="fas fa-expand-arrows-alt"></i></div>
+                                                                <div class="btn is-isolated btn-school hint--bottom"
+                                                                    aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                        @click="deleteOption(index)"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div> <i class="fas fa-stop-circle"></i> <label class="static">
+                                                            select an option</label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <div v-if="showOption">
+                                                <transition name="modal">
+                                                    <div class="modal-mask">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                            @click="showOption=false">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+
+                                                                    <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Multi Choice</h5>
+                                                                                <button
+                                                                                    class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox"
+                                                                                    class="form-control"
+                                                                                    id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                    <input type="textbox" class="form-control" placeholder="Select an option">
+                                                                                </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label1"
+                                                                                    for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox"
+                                                                                    class="form-check-input"
+                                                                                    id="exampleCheck1">
+                                                                                <label class="form-check-label2"
+                                                                                    for="exampleCheck1">Show Skip
+                                                                                    Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Options</b>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-6 ">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Sample Option">
+
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="row sample mb-3">
+                                                                                <div class="col-sm-6 ">
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Sample Option">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <button
+                                                                                        class="btn btn-success">+</button>
+                                                                                    <button
+                                                                                        class="btn btn-danger">-</button>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            </form>
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+                                            
+                                        
+
+                                        <!-- option end -->
+
+                                        <!-- email start -->
+
+                                        <div class="item" v-for="(div, index) in emails">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addEmail"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showEmail = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteEmail(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-envelope"></i> <label class="static">What is
+                                                        your email address? </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showEmail">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showEmail=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Email</h5>
+                                                                                <button  class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>                                                                          
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Error message when visitor enter invalid answer</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                            <div >
+                                                                                <input type="text" class="form-control" placeholder="Please enter valid email address"></div>
+                                                                                
+                                                                
+                                                                            </div>
+                                                                            
+                                                                        </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+                                        <!-- email end -->
+
+                                        <!-- booking start -->
+
+                                        <div class="item" v-for="(div, index) in booking">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addBooking"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showBooking = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteBooking(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-clock"></i> <label class="static"> Book
+                                                        an appointment/meeting</label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showBooking">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showBooking=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Appointment</h5>
+                                                                                <button class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                <input type="textbox" class="form-control" placeholder="Select an option">
+                                                                            </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Available Days and Time</b> <label class="form-check-label2" for="exampleCheck1">in IST
+                                                                                    timezone</label>
+                                                                            </div>
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-7">
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">sun</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">mon</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">tue</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">wed</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">thu</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">fri</button>
+                                                                                    <button type="button" class="btn mr-3 btn-outline-success text">sat</button>
+                                                                                </div>
+                                                                                <div class=" col-sm-2">
+                                                                
+                                                                                    <select class="form-control drop" id="sel1" name="sellist1">
+                                                                                        <option>9.00 am</option>
+                                                                                        <option>9.30 am</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                
+                                                                                <!-- <label>-</label> -->
+                                                                
+                                                                                <div class=" col-sm-2">
+                                                                
+                                                                                    <select class="form-control drop" id="sel1" name="sellist1">
+                                                                                        <option>5.00 pm</option>
+                                                                                        <option>5.30 pm</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                
+                                                                            <div class="accept">
+                                                                                <b>Accept </b>
+                                                                                <input type="number" class="form-control " id="cont" style="width:65px;" value="-1">
+                                                                                <b> appointment per</b>
+                                                                
+                                                                
+                                                                                <button class="btn btn-outline-success text" style="margin-left: 35px;">15</button>
+                                                                                <button class="btn btn-outline-success text" style="margin-left: 35px;">30</button>
+                                                                                <button class="btn btn-outline-success text" style="margin-left: 35px;">60</button>
+                                                                                <input type="number" placeholder="custom" id="cont" class="form-control" style="width:20%;margin-left: 20px;" value="">
+                                                                                <b style="margin-left: 20px;"> minute duration</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                    <i class="fas fa-info-circle"  style="color:#4051b4;margin-right: 10px"></i><label style="color:#4051b4;margin:10px 0 20px">Connect with Google Calender from integrations page for more powerful features</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                    <b>Invitee Email Question</b>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                <div >
+                                                                                        <select class="form-control drop" id="sel1" name="sellist1">
+                                                                                                <option>What is your email address</option>
+                                                                                                <option>What is your email address</option>
+                                                                
+                                                                                                
+                                                                                                </select>               
+                                                                                            </div>
+                                                                                    
+                                                                    
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                        <b>Success message on confirmation</b>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                    <div >
+                                                                                        <input type="text" class="form-control" placeholder="Your appointment is confirmed">
+                                                                                    </div>
+                                                                                        
+                                                                        
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                            <b>Message to show when slots are unavailable</b>
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                        <div >
+                                                                                            <input type="text" class="form-control" placeholder="Slots are not available for the selected day">
+                                                                                        </div>
+                                                                                            
+                                                                            
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                                <b>Message to show when selected slot is already booked</b>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                            <div >
+                                                                                                <input type="text" class="form-control" placeholder="Selected slot is not available">
+                                                                                            </div>
+                                                                                                
+                                                                                
+                                                                                            </div>
+                                                                
+                                                                
+                                                                        </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+
+                                        <!-- booking end -->
+
+                                        <!-- list start -->
+
+                                        <div class="item" v-for="(div, index) in list">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addList"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showList = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteList(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-clipboard-list"></i> <label class="static">
+                                                        Type and select your answer </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showList">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showList=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">List</h5>
+                                                                                <button  class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                <input type="textbox" class="form-control" placeholder="Type and select your answer">
+                                                                            </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Add suggestions</b>
+                                                                            </div>
+                                                                            
+                                                                            <div class="form-group">
+                                                                                <input type="text" class="form-control" placeholder="Add a tag">
+                                                                            </div>
+                                                                
+                                                                           
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Error if answer not in list</label>
+                                                                                </div>
+                                                                        </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+
+
+                                        <!-- list end -->
+
+                                        <!-- range start -->
+
+                                        <div class="item" v-for="(div, index) in range">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addRange"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showRange = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteRange(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-sliders-h"></i> <label class="static">
+                                                        Select a range </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showRange">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showRange=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Range</h5>
+                                                                                <button class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>
+                                                                
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="row">    
+                                                                
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2" for="exampleCheck1">Prefix</label><i class="far fa-question-circle" style="color:#3e396b;margin-left:5px;"></i>
+                                                                                    <input type="text" class="form-control">
+                                                                
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2" for="exampleCheck1">Suffix</label><i class="far fa-question-circle" style="color:#3e396b;margin-left:5px;"></i>
+                                                                                    <input type="text" class="form-control">
+                                                                
+                                                                                </div>
+                                                                            </div>
+                                                                
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2" for="exampleCheck1">Minimum</label>
+                                                                                    <input type="number" class="form-control">
+                                                                
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2" for="exampleCheck1">Maximum</label>
+                                                                                    <input type="number" class="form-control">
+                                                                
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="form-check-label2" for="exampleCheck1">Step</label>
+                                                                                    <input type="text" class="form-control">
+                                                                
+                                                                                </div>
+                                                                            </div>
+                                                                    
+                                                                
+                                                                
+                                                                    </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+
+
+                                        <!-- range end -->
+
+                                        <!-- scale start -->
+
+                                        <div class="item" v-for="(div, index) in scale">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addScale"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showScale = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteScale(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-tachometer-alt"></i> <label class="static">
+                                                        How likely do you recommend us to a friend
+                                                        or colleague</label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showScale">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showScale=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">Opinion Scale</h5>
+                                                                                <button class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                <input type="textbox" class="form-control" placeholder="How likely do you recommend us to a friend or colleague?">
+                                                                            </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Left label</b>
+                                                                                    <input type="text" class="form-control" placeholder="Less likely">
+                                                                
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <b>Right label</b>
+                                                                                    <input type="text" class="form-control" placeholder="Very likely">
+                                                                
+                                                                                </div>
+                                                                            </div>
+                                                                    
+                                                                
+                                                                
+                                                                    </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+
+
+                                        <!-- scale end  -->
+
+                                        <!-- file start -->
+
+                                        <div class="item" v-for="(div, index) in file">
+                                            <div class="clearfix" id="C441BC33-C866-4654-8FF2-322290850CF9"
+                                                draggable="true">
+                                                <div class="item-question showhim">
+                                                    <div class="toolbar-header showme">
+                                                        <div class="toolbar-header-buttons">
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Duplicate"><i class="fas fa-copy"
+                                                                    @click="addFile"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom logic-active"
+                                                                aria-label="Logical Jump"><i class="fas fa-random"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Edit"><i class="fas fa-pen"
+                                                                    @click="showFile = true"></i>
+                                                            </div>
+                                                            <div class="btn is-isolated btn-school arrow-btn hint--bottom"
+                                                                aria-label="Drag to Move"><i
+                                                                    class="fas fa-expand-arrows-alt"></i></div>
+                                                            <div class="btn is-isolated btn-school hint--bottom"
+                                                                aria-label="Delete"><i class="fas fa-trash-alt"
+                                                                    @click="deleteFile(index)"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div> <i class="fas fa-upload"></i> <label class="static">
+                                                        Upload file </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div v-if="showFile">
+                                            <transition name="modal">
+                                                <div class="modal-mask">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close"
+                                                                        @click="showFile=false">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="container">
+                                                                        <div class="header">
+                                                                            <div class=" clearfix">
+                                                                                <h5 class="float-left">File Upload</h5>
+                                                                                <button  class="btn btn-success float-right done ">Done</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <form>
+                                                                            <div class="form-group">
+                                                                                <b>Chat Message</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="textbox" class="form-control" id="summernote">
+                                                                            </div>
+                                                                            <!-- <div class="form-group">
+                                                                                <input type="textbox" class="form-control" placeholder="Upload file">
+                                                                            </div> -->
+                                                                            <div class="form-check">
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label1" for="exampleCheck1">Show
+                                                                                    Back Button</label>
+                                                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                                <label class="form-check-label2" for="exampleCheck1">Show Skip Button</label>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Message to show when file size exceeds 10 Mb</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                            <div >
+                                                                                <input type="text" class="form-control" placeholder="File size exceeded 10 Mb">
+                                                                            </div>
+                                                                                
+                                                                
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <b>Message to show when upload failes</b>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                            <div >
+                                                                                <input type="text" class="form-control" placeholder="Upload failed">
+                                                                            </div>
+                                                                                
+                                                                
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+                                        <!-- file end  -->
+
+                                    </div>
+                                    <div id="END"></div>
+                    </div>
+                    </b-col>
+
+                    </b-row>
+
+
+
+                    </b-container>
+
+        </div>
+
+
+        </b-tab>
+
+        <!-- tab2 end -->
+
+        <!-- tab3 start -->
+
+        <b-tab title="Publish" class="pub">
+            <template>
+                <div role="tablist">
+                    <b-card no-body>
+                        <b-card-header header-tag="header" role="tab">
+                            <b-button block href="#" v-b-toggle.accordion-1 class="but"><i class="fas fa-code"
+                                    style="padding-right:30px; font-size: 30px;"></i>Install
+                                Widget on Website </b-button>
+                        </b-card-header>
+                        <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+                            <b-card-body>
+                                <b-card-text>
+                                    <p>
+                                        Copy the above code
+                                        snippet and paste it into your HTML code, preferably before the
+                                        closing head tag (
+                                        &lt;/head&gt;
+                                        ).
+
+                                    </p><br>
+                                    <p><b>Get help</b>with
+                                        <a href="https://help.collect.chat/article/show/56573-add-to-website"
+                                            target="_blank">step by step instructions.</a></p>
+                                    <p><b>Perfect for</b> lead collection,
+                                        customer education, customer feedback.
+
+                                    </p>
+
+
+
+                                </b-card-text>
+                            </b-card-body>
+                        </b-collapse>
+
+                    </b-card>
+                </div>
+
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-2 class="but"> <i class="fab fa-wordpress"
+                                style="padding-right:30px; font-size: 30px;"></i>
+                            Install widget on WordPress website </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+
+                                <div>
+                                    <p><b>Install Plugin</b> - Goto the plugin directory in WP admin
+                                        and search for Collect.chat or
+                                        <a href="https://wordpress.org/plugins/collectchat/">download the
+                                            plugin</a>, to install.
+
+                                    </p>
+                                    <p><b>- Widget</b>- Go to ‘Settings &gt; Collect.chat’ in WP
+                                        admin. Copy the code snippet below, paste it in the script field and
+                                        ‘Save’ changes.
+
+                                    </p>
+                                    <p><b>- Embed</b>- Go to your post or page editor. Copy the
+                                        following URL and paste where required.
+
+                                    </p>
+                                    <p><b>Bot ID: </b>
+
+                                        5d6605aac153a1688892bbd2
+
+                                    </p>
+                                    <p><b>Get help</b> with
+                                        <a href="https://help.collect.chat/article/show/56885-add-to-wordpress"
+                                            target="_blank">step by step instructions.</a></p>
+                                    <p><b>Perfect for</b> lead collection, customer education, customer
+                                        study.
+
+                                    </p>
+                                </div>
+
+
+
+
+
+
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-3 class="but"> <i class="fas fa-laptop"
+                                style="padding-right:26px; font-size: 30px;"></i>
+                            Install on other platforms like Shopify or Squarespace </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+
+                                <p>Copy the snippet code and follow the below instructions</p>
+                                <p><b>Perfect for</b> lead collection, customer education, customer study.
+                                </p>
+
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-4 class="but"> <i class="fas fa-share-square"
+                                style="padding-right:30px; font-size: 30px;"></i>
+                            Share the landing page bot </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+                                <p>Here is the unique link to your chatbot. Simply share it with your users
+                                    on
+                                    social media,
+                                    contact pages or business cards.</p>
+                                <p><b>Get help</b>with <a
+                                        href="https://help.collect.chat/article/show/56830-share-the-chatbot"
+                                        target="_blank">step by step instructions.</a></p>
+                                <p><b>Perfect for</b>lead generation, surveys and contact us form.</p>
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-5 class="but"> <i class="fas fa-envelope"
+                                style="padding-right:30px; font-size: 30px;"></i>
+                            Use
+                            the bot in email or sms campaign </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-5" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+
+                                <p>Copy and share the unique link below in your campaigns. You can add url
+                                    parameters to
+                                    identify the users responded to your bot.</p>
+                                <p><b>Get help</b> with <a
+                                        href="https://help.collect.chat/article/show/85401-identify-a-user-in-email-or-sms-campaigns"
+                                        target="_blank">Identifying users in campaign</a></p>
+                                <p><b>Perfect for</b> feedback collection, surveys via email or sms
+                                    campaigns.
+                                </p>
+
+
+
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-6 class="but"> <i class="fas fa-expand-arrows-alt"
+                                style="padding-right:30px; font-size: 30px;"></i> Embed the bot inside my
+                            website </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-6" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+                                <p>Copy the below iframe code. Paste it into your website's HTML source
+                                    where
+                                    you need to place
+                                    the chatbot.</p>
+                                <p><b>Get help</b>with <a
+                                        href="https://help.collect.chat/article/show/56600-embed-the-chatbot"
+                                        target="_blank">step by step instructions.</a></p>
+                                <p><b>Perfect for</b>feedback collection, surveys, email or SMS campaigns.
+                                </p>
+
+
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-7 class="but"> <i class="fas fa-edit"
+                                style="padding-right:25px; font-size: 30px;"></i> Embed
+                            the bot inside my Medium blog </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-7" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+                                <p>Copy the below link and paste it inside your Medium article.</p>
+                                <p><b>Get help</b>with <a
+                                        href="https://help.collect.chat/article/show/56956-add-to-medium-blogs"
+                                        target="_blank">step by step instructions.</a></p>
+                                <p><b>Perfect for</b>email collection, audience feedback, audience
+                                    engagement.
+                                </p>
+
+
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+                <b-card no-body>
+                    <b-card-header header-tag="header" role="tab">
+                        <b-button block href="#" v-b-toggle.accordion-8 class="but"> <i class="fas fa-clipboard-list"
+                                style="padding-right:30px; font-size: 30px;"></i>
+                            Email instructions to my
+                            web developer </b-button>
+                    </b-card-header>
+                    <b-collapse id="accordion-8" accordion="my-accordion" role="tabpanel">
+                        <b-card-body>
+                            <b-card-text>
+                                <p>You can also share the steps from <a
+                                        href="https://help.collect.chat/article/show/56573-add-to-website">https://help.collect.chat/article/show/56573-add-to-website</a>
+                                </p>
+                            </b-card-text>
+
+                        </b-card-body>
+                    </b-collapse>
+                </b-card>
+
+                <p class="para"><b>Still need help?</b>Ask us at <a href="mailto:care@zoogle.chat">care@zoogle.chat</a>
+                    or <a href="https://twitter.com/zooglechat" target="_blank">@Zooglechat</a></p>
+
+            </template>
+
+        </b-tab>
+
+        <!-- tab3 end -->
+
+        </b-tabs>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Start running your app -->
+
+    <script>
+        window.app = new Vue({
+            el: '#app',
+            data: {
+                inputs: [],
+                texts: [],
+                dates: [],
+                selects: [],
+                number: [],
+                rating: [],
+                links: [],
+                options: [],
+                emails: [],
+                booking: [],
+                list: [],
+                range: [],
+                scale: [],
+                file: [],
+                showModal: false,
+                showText: false,
+                showDate: false,
+                showSelect: false,
+                showNumber: false,
+                showRating: false,
+                showLink: false,
+                showOption: false,
+                showEmail: false,
+                showBooking: false,
+                showList: false,
+                showRange: false,
+                showScale: false,
+                showFile: false
+
+            },
+            methods: {
+                addRow() {
+                    this.inputs.push({
+                    })
+                },
+                addText() {
+                    this.texts.push({})
+                },
+                addDate() {
+                    this.dates.push({})
+                },
+                addSelect() {
+                    this.selects.push({})
+                },
+                addNumber() {
+                    this.number.push({})
+                },
+                addRating() {
+                    this.rating.push({})
+                },
+                addLink() {
+                    this.links.push({})
+                },
+                addOption() {
+                    this.options.push({})
+                },
+                addEmail() {
+                    this.emails.push({})
+                },
+                addBooking() {
+                    this.booking.push({})
+                },
+                addList() {
+                    this.list.push({})
+                },
+                addRange() {
+                    this.range.push({})
+                },
+                addScale() {
+                    this.scale.push({})
+                },
+                addFile() {
+                    this.file.push({})
+                },
+                deleteRow(index) {
+                    this.inputs.splice(index, 1)
+                },
+                deleteText(index) {
+                    this.texts.splice(index, 1)
+                },
+                deleteDate(index) {
+                    this.dates.splice(index, 1)
+                },
+                deleteSelect(index) {
+                    this.selects.splice(index, 1)
+                },
+                deleteNumber(index) {
+                    this.number.splice(index, 1)
+                },
+                deleteRating(index) {
+                    this.rating.splice(index, 1)
+                },
+                deleteLink(index) {
+                    this.links.splice(index, 1)
+                },
+                deleteOption(index) {
+                    this.options.splice(index, 1)
+                },
+                deleteEmail(index) {
+                    this.emails.splice(index, 1)
+                },
+                deleteBooking(index) {
+                    this.booking.splice(index, 1)
+                },
+                deleteList(index) {
+                    this.list.splice(index, 1)
+                },
+                deleteRange(index) {
+                    this.range.splice(index, 1)
+                },
+                deleteScale(index) {
+                    this.scale.splice(index, 1)
+                },
+                deleteFile(index) {
+                    this.file.splice(index, 1)
+                },
+
+
+            }
+
+        })
+
+    </script>
+
+    <script src="./asset/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="./asset/js/popper.min.js"></script>
+    <script src="./asset/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/52e183519a.js"></script>
+    <script src="./asset/js/summernote-bs4.js"></script>
+    <script src="./asset/js/config.js"></script>
+    <script src="./asset/js/tam-emoji.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js" defer></script>
+
+    <script>
+
+        //      document.emojiType = 'unicode'; // default: image
+        document.emojiSource = 'img';
+        $('#summernote').summernote({
+            placeholder: "Select an option",
+            toolbar: [
+
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['insert', ['picture', 'video', 'emoji']],
+                ['tool', ['undo', 'redo']]
+
+
+            ],
+        });
+
+    </script>
+
+</body>
+
+</html>

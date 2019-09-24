@@ -1,0 +1,31 @@
+.test{
+    width: 39px;
+    height: 37px;
+    border-radius: 21px; 
+  margin-top: 5px;
+}
+.s{
+    margin-top: 5px;
+}
+.item-question{
+  clear: both;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #f4f4f4;
+  border-radius: 1.3em;
+  font-size: 15px;
+
+}
+.showme {
+  display: none;
+  float: right;
+}
+
+.showhim:hover .showme {
+  display: block;
+}
+.showhim:hover{
+  background: white
+}
